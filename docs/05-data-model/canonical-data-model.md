@@ -31,3 +31,30 @@ A store may have different identifiers across enterprise systems.
 | POS | 42 |
 
 The canonical `store_id` will provide a stable internal identity while preserving external system identifiers for integration and reconciliation.
+
+## 2. Product
+
+The canonical Product entity represents a NorthStar product and provides a stable identity across enterprise systems.
+
+### Attributes
+
+| Field | Description |
+|---|---|
+| product_id | Internal canonical product identifier |
+| sku | NorthStar SKU |
+| upc | Universal Product Code when available |
+| name | Product name |
+| status | Product lifecycle status |
+
+### External Identifiers
+
+A product may have different identifiers across enterprise systems.
+
+| System | Example Identifier |
+|---|---|
+| OMS | 98765 |
+| Inventory | SKU-98765 |
+| POS | 008123456789 |
+| Product Catalog | PROD-5542 |
+
+The canonical `product_id` provides a stable internal identity while preserving source-system identifiers for integration and reconciliation.
