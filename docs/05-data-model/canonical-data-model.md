@@ -139,3 +139,40 @@ Inventory Position connects a product to a store and captures what the inventory
 For the Phase 1 BOPIS discrepancy, this allows the system to identify situations where inventory reports available quantity but the store cannot locate the product.
 
 The source and ingestion timestamps are preserved so the investigation workflow can determine whether stale or delayed inventory data may have contributed to the discrepancy.
+
+## 5. Inventory Movement
+
+The canonical Inventory Movement entity represents an event that changes the inventory quantity of a product at a NorthStar store.
+
+### Attributes
+
+| Field | Description |
+|---|---|
+| inventory_movement_id | Internal canonical movement identifier |
+| store_id | Canonical store identifier |
+| product_id | Canonical product identifier |
+| movement_type | Type of inventory change |
+| quantity_change | Signed quantity change caused by the movement |
+| source_system | System that generated the movement |
+| external_reference_id | Source-system transaction or event identifier |
+| occurred_at | Timestamp when the movement occurred |
+| ingested_at | Timestamp when NorthStar integration received the movement |
+
+### Movement Types
+
+Examples include:
+
+- SALE
+- RETURN
+- RECEIPT
+- TRANSFER_IN
+- TRANSFER_OUT
+- ADJUSTMENT
+
+### Phase 1 Relevance
+
+Inventory movements provide the event history needed to investigate why the current inventory position may not match physical store inventory.
+
+For example, a recent POS sale may reduce physical inventory before the corresponding update reaches the inventory system.
+
+Preserving the source reference and timestamps also supports reconciliation, duplicate detection, troubleshooting, and auditability.
