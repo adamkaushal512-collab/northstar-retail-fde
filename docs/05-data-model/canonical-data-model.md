@@ -58,3 +58,56 @@ A product may have different identifiers across enterprise systems.
 | Product Catalog | PROD-5542 |
 
 The canonical `product_id` provides a stable internal identity while preserving source-system identifiers for integration and reconciliation.
+
+## 3. Order
+
+The canonical Order entity represents a customer order and its fulfillment state across NorthStar enterprise systems.
+
+### Attributes
+
+| Field | Description |
+|---|---|
+| order_id | Internal canonical order identifier |
+| external_order_id | Source-system order identifier |
+| store_id | Canonical store fulfilling the order |
+| order_status | Overall order status |
+| fulfillment_type | Fulfillment method, such as BOPIS |
+| promised_pickup_at | Expected customer pickup time |
+| created_at | Order creation timestamp |
+| updated_at | Last known order update timestamp |
+
+### Order Items
+
+Each order contains one or more products.
+
+| Field | Description |
+|---|---|
+| product_id | Canonical product identifier |
+| quantity | Quantity ordered |
+| fulfillment_status | Current item fulfillment status |
+| reserved_quantity | Quantity reserved for the order |
+
+### External Identifiers
+
+The same order may have different identifiers or representations across enterprise systems.
+
+| System | Example Identifier |
+|---|---|
+| OMS | ORD-100045 |
+| Store Systems | 100045 |
+| Customer Service | CASE-78421 |
+
+The canonical `order_id` provides a stable internal identity while preserving source-system identifiers for integration and reconciliation.
+
+### Phase 1 Relevance
+
+The Order entity allows the exception workflow to connect:
+
+- The customer order
+- The fulfillment store
+- The requested product
+- The quantity required
+- The promised pickup time
+- The current fulfillment state
+
+This information will later be correlated with inventory and transaction data to determine why a BOPIS order cannot be fulfilled.
