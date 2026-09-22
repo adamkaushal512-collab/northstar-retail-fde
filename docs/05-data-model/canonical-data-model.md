@@ -111,3 +111,31 @@ The Order entity allows the exception workflow to connect:
 - The current fulfillment state
 
 This information will later be correlated with inventory and transaction data to determine why a BOPIS order cannot be fulfilled.
+
+## 4. Inventory Position
+
+The canonical Inventory Position entity represents the inventory state of a product at a specific NorthStar store.
+
+### Attributes
+
+| Field | Description |
+|---|---|
+| inventory_position_id | Internal canonical inventory position identifier |
+| store_id | Canonical store identifier |
+| product_id | Canonical product identifier |
+| on_hand_quantity | Quantity the inventory system reports physically on hand |
+| reserved_quantity | Quantity reserved for customer orders |
+| allocated_quantity | Quantity allocated for fulfillment |
+| available_quantity | Quantity currently reported as available |
+| damaged_quantity | Quantity unavailable because it is damaged or held |
+| source_system | System that supplied the inventory state |
+| source_updated_at | Timestamp when the source system last updated the inventory record |
+| ingested_at | Timestamp when NorthStar integration received the record |
+
+### Phase 1 Relevance
+
+Inventory Position connects a product to a store and captures what the inventory system currently believes is available.
+
+For the Phase 1 BOPIS discrepancy, this allows the system to identify situations where inventory reports available quantity but the store cannot locate the product.
+
+The source and ingestion timestamps are preserved so the investigation workflow can determine whether stale or delayed inventory data may have contributed to the discrepancy.
