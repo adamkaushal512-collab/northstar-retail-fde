@@ -176,3 +176,39 @@ Inventory movements provide the event history needed to investigate why the curr
 For example, a recent POS sale may reduce physical inventory before the corresponding update reaches the inventory system.
 
 Preserving the source reference and timestamps also supports reconciliation, duplicate detection, troubleshooting, and auditability.
+
+## 6. Operational Exception
+
+The canonical Operational Exception entity represents a detected operational discrepancy that requires investigation or resolution by a store team.
+
+### Attributes
+
+| Field | Description |
+|---|---|
+| exception_id | Internal canonical exception identifier |
+| exception_type | Type of operational discrepancy |
+| order_id | Canonical order associated with the exception |
+| store_id | Canonical store where the exception occurred |
+| product_id | Canonical product involved |
+| reported_available_quantity | Quantity reported as available by the inventory system |
+| observed_quantity | Quantity physically observed by store staff |
+| status | Current exception lifecycle status |
+| detected_at | Timestamp when the discrepancy was identified |
+| resolved_at | Timestamp when the exception was resolved |
+| resolution_code | Structured reason describing how the exception was resolved |
+
+### Exception Types
+
+For Phase 1, the primary exception type is:
+
+- INVENTORY_NOT_FOUND
+
+### Phase 1 Relevance
+
+The Operational Exception connects system-reported inventory with the physical observation made by store staff.
+
+For example, the inventory system may report two units available while an associate physically observes zero units during BOPIS picking.
+
+Preserving both values allows NorthStar to investigate the discrepancy without treating either the system value or the physical observation as automatically authoritative.
+
+The exception record also provides the lifecycle needed to measure investigation time, resolution time, and operational outcomes.
