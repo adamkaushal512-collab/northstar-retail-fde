@@ -1,0 +1,83 @@
+{
+  "store": {
+    "store_id": "store-042",
+    "store_number": "042",
+    "name": "NorthStar Store 042",
+    "region_id": "region-south-01",
+    "timezone": "America/Chicago",
+    "status": "OPEN"
+  },
+  "product": {
+    "product_id": "product-98765",
+    "sku": "98765",
+    "upc": "008123456789",
+    "name": "NorthStar Wireless Headphones",
+    "status": "ACTIVE"
+  },
+  "order": {
+    "order_id": "order-100045",
+    "external_order_id": "ORD-100045",
+    "store_id": "store-042",
+    "order_status": "PROCESSING",
+    "fulfillment_type": "BOPIS",
+    "promised_pickup_at": "2026-09-22T16:00:00-05:00",
+    "items": [
+      {
+        "product_id": "product-98765",
+        "quantity": 1,
+        "fulfillment_status": "PICKING",
+        "reserved_quantity": 1
+      }
+    ]
+  },
+  "inventory_position": {
+    "inventory_position_id": "invpos-042-98765",
+    "store_id": "store-042",
+    "product_id": "product-98765",
+    "on_hand_quantity": 3,
+    "reserved_quantity": 1,
+    "allocated_quantity": 0,
+    "available_quantity": 2,
+    "damaged_quantity": 0,
+    "source_system": "INVENTORY",
+    "source_updated_at": "2026-09-22T13:00:00-05:00",
+    "ingested_at": "2026-09-22T13:02:00-05:00"
+  },
+  "inventory_movements": [
+    {
+      "inventory_movement_id": "movement-001",
+      "store_id": "store-042",
+      "product_id": "product-98765",
+      "movement_type": "SALE",
+      "quantity_change": -1,
+      "source_system": "POS",
+      "external_reference_id": "txn-55001",
+      "occurred_at": "2026-09-22T13:20:00-05:00",
+      "ingested_at": "2026-09-22T13:21:00-05:00"
+    },
+    {
+      "inventory_movement_id": "movement-002",
+      "store_id": "store-042",
+      "product_id": "product-98765",
+      "movement_type": "SALE",
+      "quantity_change": -1,
+      "source_system": "POS",
+      "external_reference_id": "txn-55002",
+      "occurred_at": "2026-09-22T13:35:00-05:00",
+      "ingested_at": "2026-09-22T13:36:00-05:00"
+    }
+  ],
+  "operational_exception": {
+    "exception_id": "exception-001",
+    "exception_type": "INVENTORY_NOT_FOUND",
+    "order_id": "order-100045",
+    "store_id": "store-042",
+    "product_id": "product-98765",
+    "reported_available_quantity": 2,
+    "observed_quantity": 0,
+    "status": "OPEN",
+    "detected_at": "2026-09-22T13:45:00-05:00",
+    "resolved_at": null,
+    "resolution_code": null
+  }
+}
