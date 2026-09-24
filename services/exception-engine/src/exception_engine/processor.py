@@ -9,6 +9,7 @@ class ProcessingResult(Enum):
     NO_EXCEPTION = "no_exception"
     DUPLICATE_EVENT = "duplicate_event"
 
+
 class ExceptionProcessor:
     def __init__(self, event_registry: InMemoryEventRegistry) -> None:
         self._event_registry = event_registry
