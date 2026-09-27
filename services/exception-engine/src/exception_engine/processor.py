@@ -54,7 +54,9 @@ class ExceptionProcessor:
             required_quantity=evidence.required_quantity,
             available_quantity=evidence.available_quantity,
             observed_quantity=evidence.observed_quantity,
+            inventory_source_system=evidence.inventory_source_system,
             inventory_source_updated_at=evidence.inventory_source_updated_at,
+
             inventory_ingested_at=evidence.inventory_ingested_at,
             observation_event_id=evidence.observation_event_id,
             observation_timestamp=evidence.observation_timestamp,

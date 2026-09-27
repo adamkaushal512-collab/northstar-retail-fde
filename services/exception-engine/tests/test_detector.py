@@ -16,6 +16,7 @@ class InventoryNotFoundDetectorTests(unittest.TestCase):
             required_quantity=1,
             available_quantity=2,
             observed_quantity=0,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=datetime.fromisoformat(
                 "2026-09-23T13:00:00"
             ),
@@ -41,6 +42,7 @@ class InventoryNotFoundDetectorTests(unittest.TestCase):
             required_quantity=1,
             available_quantity=2,
             observed_quantity=None,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=datetime.fromisoformat(
                 "2026-09-23T13:00:00"
             ),
@@ -65,6 +67,7 @@ class InventoryNotFoundDetectorTests(unittest.TestCase):
             required_quantity=1,
             available_quantity=2,
             observed_quantity=1,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=datetime.fromisoformat(
                 "2026-09-23T13:00:00"
             ),
@@ -91,6 +94,7 @@ class InventoryNotFoundDetectorTests(unittest.TestCase):
             required_quantity=3,
             available_quantity=5,
             observed_quantity=2,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=datetime.fromisoformat(
                 "2026-09-23T13:00:00"
             ),
@@ -116,6 +120,7 @@ class InventoryNotFoundDetectorTests(unittest.TestCase):
             required_quantity=1,
             available_quantity=2,
             observed_quantity=0,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=datetime.fromisoformat(
                 "2026-09-23T13:00:00"
             ),
@@ -141,6 +146,7 @@ class InventoryNotFoundDetectorTests(unittest.TestCase):
             required_quantity=3,
             available_quantity=2,
             observed_quantity=0,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=datetime.fromisoformat(
                 "2026-09-23T13:00:00"
             ),
