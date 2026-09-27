@@ -34,6 +34,7 @@ class ExceptionProcessorTests(unittest.TestCase):
             required_quantity=1,
             available_quantity=2,
             observed_quantity=observed_quantity,
+            inventory_source_system="INVENTORY_SERVICE",
             inventory_source_updated_at=inventory_source_updated_at,
             inventory_ingested_at=datetime(
                 2026, 9, 24, 13, 2, tzinfo=timezone.utc

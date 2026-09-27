@@ -11,6 +11,7 @@ class DetectionInput:
     required_quantity: int
     available_quantity: int
     observed_quantity: int | None
+    inventory_source_system: str
     inventory_source_updated_at: datetime
     inventory_ingested_at: datetime
     observation_event_id: str
@@ -25,6 +26,7 @@ class OperationalException:
     required_quantity: int
     available_quantity: int
     observed_quantity: int | None
+    inventory_source_system: str
     inventory_source_updated_at: datetime
     inventory_ingested_at: datetime
     observation_event_id: str

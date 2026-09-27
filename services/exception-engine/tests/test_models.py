@@ -25,6 +25,7 @@ def test_operational_exception_preserves_detection_evidence():
         required_quantity=1,
         available_quantity=2,
         observed_quantity=0,
+        inventory_source_system="INVENTORY_SERVICE",
         inventory_source_updated_at=inventory_source_updated_at,
         inventory_ingested_at=inventory_ingested_at,
         observation_event_id="observation-001",
@@ -40,6 +41,7 @@ def test_operational_exception_preserves_detection_evidence():
     assert exception.required_quantity == 1
     assert exception.available_quantity == 2
     assert exception.observed_quantity == 0
+    assert exception.inventory_source_system == "INVENTORY_SERVICE"
     assert exception.inventory_source_updated_at == inventory_source_updated_at
     assert exception.inventory_ingested_at == inventory_ingested_at
     assert exception.observation_event_id == "observation-001"
