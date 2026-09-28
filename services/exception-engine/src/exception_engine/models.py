@@ -17,6 +17,7 @@ class DetectionInput:
     observation_event_id: str
     observation_timestamp: datetime
 
+
 @dataclass(frozen=True)
 class OperationalException:
     exception_type: str
