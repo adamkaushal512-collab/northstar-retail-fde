@@ -1,0 +1,47 @@
+[
+  {
+    "case_id": "stale-with-movements",
+    "description": "Detected BOPIS discrepancy with stale inventory and recent movements.",
+    "overrides": {},
+    "expected": {
+      "detection_result": "exception_detected",
+      "conflict_present": true,
+      "missing_movements": false,
+      "stale_explanation": true,
+      "policy_reference": true
+    }
+  },
+  {
+    "case_id": "stale-without-movements",
+    "description": "Detected discrepancy where movement evidence is missing.",
+    "overrides": {"remove_inventory_movements": true},
+    "expected": {
+      "detection_result": "exception_detected",
+      "conflict_present": true,
+      "missing_movements": true,
+      "stale_explanation": true,
+      "policy_reference": true
+    }
+  },
+  {
+    "case_id": "fresh-discrepancy",
+    "description": "Detected discrepancy with fresh inventory evidence.",
+    "overrides": {"inventory_source_updated_at": "2026-09-22T13:30:00-05:00"},
+    "expected": {
+      "detection_result": "exception_detected",
+      "conflict_present": true,
+      "missing_movements": false,
+      "stale_explanation": false,
+      "policy_reference": true
+    }
+  },
+  {
+    "case_id": "no-discrepancy",
+    "description": "Physical observation satisfies the required quantity, so no investigation should run.",
+    "overrides": {"observed_quantity": 1},
+    "expected": {
+      "detection_result": "no_exception",
+      "investigation_absent": true
+    }
+  }
+]
