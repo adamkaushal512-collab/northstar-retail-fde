@@ -1,2 +1,8 @@
 __pycache__/
 *.py[cod]
+
+# Local exception-engine runtime state
+var/
+*.db
+*.db-shm
+*.db-wal
