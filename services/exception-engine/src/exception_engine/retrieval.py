@@ -16,7 +16,7 @@ def load_policy(path: str | Path) -> tuple[PolicySection, ...]:
     current_lines: list[str] = []
 
     for line in content.splitlines():
-        if line.startswith(("policy_id:", "version:")):
+        if line.startswith(("policy_id:", "version:", "status:")):
             key, value = line.split(":", 1)
             metadata[key.strip()] = value.strip()
         elif line.startswith("## "):
@@ -38,6 +38,7 @@ def _section(metadata: dict[str, str], title: str, lines: list[str]) -> PolicySe
         version=metadata.get("version", "UNKNOWN"),
         title=title,
         text=" ".join(lines),
+        status=metadata.get("status", "UNSPECIFIED").upper(),
     )
 
 
@@ -48,8 +49,9 @@ def retrieve_policy(
     limit: int = 2,
 ) -> tuple[PolicySection, ...]:
     query_tokens = _tokens(query)
+    approved_sections = tuple(section for section in sections if section.status == "APPROVED")
     ranked = sorted(
-        sections,
+        approved_sections,
         key=lambda section: len(query_tokens & _tokens(section.title + " " + section.text)),
         reverse=True,
     )

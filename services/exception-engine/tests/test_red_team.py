@@ -41,7 +41,7 @@ def test_untrusted_instruction_is_not_propagated():
     assert result.detected is True
 
 
-def test_observation_identity_gap_is_exposed():
+def test_observation_identity_gap_is_remediated():
     case = next(case for case in _cases() if case["case_id"] == "RT-003-observation-store-mismatch")
     result = evaluate_red_team_case(
         case,
@@ -50,10 +50,10 @@ def test_observation_identity_gap_is_exposed():
         repo_root=REPO_ROOT,
     )
     assert result.detected is True
-    assert "not cross-validated" in result.details
+    assert "is rejected" in result.details
 
 
-def test_negative_quantity_validation_gap_is_exposed():
+def test_negative_quantity_validation_gap_is_remediated():
     case = next(case for case in _cases() if case["case_id"] == "RT-005-negative-observed-quantity")
     result = evaluate_red_team_case(
         case,
@@ -62,10 +62,10 @@ def test_negative_quantity_validation_gap_is_exposed():
         repo_root=REPO_ROOT,
     )
     assert result.detected is True
-    assert "negative observed quantity" in result.details
+    assert "negative observed quantity is rejected" in result.details
 
 
-def test_draft_policy_governance_gap_is_exposed():
+def test_draft_policy_governance_gap_is_remediated():
     case = next(case for case in _cases() if case["case_id"] == "RT-007-draft-policy")
     result = evaluate_red_team_case(
         case,

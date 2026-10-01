@@ -18,6 +18,7 @@ class PolicySection:
     version: str
     title: str
     text: str
+    status: str = "APPROVED"
 
 
 @dataclass(frozen=True)

@@ -65,18 +65,34 @@ def detection_input_from_payload(payload: dict[str, Any]) -> DetectionInput:
     if item_product_id != inventory_product_id:
         raise PrototypeInputError("order item and inventory product_id values must match")
 
+    observation_store_id = _required(observation, "store_id", "store_observation")
+    observation_product_id = _required(observation, "product_id", "store_observation")
+    if observation_store_id != order_store_id:
+        raise PrototypeInputError("store observation and order store_id values must match")
+    if observation_product_id != item_product_id:
+        raise PrototypeInputError("store observation and order item product_id values must match")
+
+    required_quantity = _required(item, "quantity", "order.items[0]")
+    available_quantity = _required(inventory, "available_quantity", "inventory_position")
+    observed_quantity = _required(observation, "observed_quantity", "store_observation")
+    for field_name, value in (
+        ("order.items[0].quantity", required_quantity),
+        ("inventory_position.available_quantity", available_quantity),
+        ("store_observation.observed_quantity", observed_quantity),
+    ):
+        if not isinstance(value, int) or isinstance(value, bool):
+            raise PrototypeInputError(f"{field_name} must be an integer")
+        if value < 0:
+            raise PrototypeInputError(f"{field_name} must be non-negative")
+
     return DetectionInput(
         order_id=_required(order, "order_id", "order"),
         store_id=order_store_id,
         product_id=item_product_id,
         fulfillment_type=_required(order, "fulfillment_type", "order"),
-        required_quantity=_required(item, "quantity", "order.items[0]"),
-        available_quantity=_required(
-            inventory, "available_quantity", "inventory_position"
-        ),
-        observed_quantity=_required(
-            observation, "observed_quantity", "store_observation"
-        ),
+        required_quantity=required_quantity,
+        available_quantity=available_quantity,
+        observed_quantity=observed_quantity,
         inventory_source_system=_required(
             inventory, "source_system", "inventory_position"
         ),
